@@ -10,6 +10,11 @@ public class NoodleBranchEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 
-		ExtraModuleNames.AddRange( new string[] { "NoodleBranch" } );
+		ExtraModuleNames.AddRange( new string[] { "NoodleBranch", "NoodleBranchEditor" } );
+		
+		if (!bBuildAllModules)
+		{
+			NativePointerMemberBehaviorOverride = PointerMemberBehavior.Disallow;
+		}
 	}
 }

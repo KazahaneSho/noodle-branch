@@ -11,5 +11,11 @@ public class NoodleBranchTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 
 		ExtraModuleNames.AddRange( new string[] { "NoodleBranch" } );
+		RegisterModulesCreatedByRider();
+	}
+
+	private void RegisterModulesCreatedByRider()
+	{
+		ExtraModuleNames.AddRange(new string[] { "NoodleBranchEditor" });
 	}
 }

@@ -11,6 +11,11 @@
 			"AdditionalDependencies": [
 				"GameFeatures"
 			]
+		},
+		{
+			"Name": "NoodleBranchEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [
