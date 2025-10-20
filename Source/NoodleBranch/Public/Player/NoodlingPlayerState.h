@@ -8,6 +8,7 @@
 
 #define UE_API NOODLEBRANCH_API
 
+class UNoodlingPawnData;
 /**
  * Project Base PlayerState class.
  */
@@ -18,6 +19,19 @@ class ANoodlingPlayerState : public AModularPlayerState
 
 public:
 	UE_API explicit ANoodlingPlayerState(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
+	template <class T>
+	const T* GetPawnData() const { return Cast<T>(PawnData); }
+
+protected:
+	
+	UFUNCTION()
+	UE_API void OnRep_PawnData();
+
+protected:
+	// TODO: Add replication
+	UPROPERTY()
+	TObjectPtr<const UNoodlingPawnData> PawnData;
 };
 
 #undef UE_API

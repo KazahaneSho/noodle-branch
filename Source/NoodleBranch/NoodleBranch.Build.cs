@@ -10,17 +10,23 @@ public class NoodleBranch : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange([
 			"Core", 
+			"CoreOnline",
 			"CoreUObject", 
 			"Engine", 
 			"InputCore", 
 			"GameFeatures", 
+			"AIModule",
 			"ModularGameplay", 
-			"ModularGameplayActors"
+			"ModularGameplayActors",
+			"CommonLoadingScreen"
 		]);
 
 		PrivateDependencyModuleNames.AddRange([
 			"CommonGame",
-			"CommonUser"
+			"CommonUser",
+			"DeveloperSettings",
+			"GameSettings",
+			"EngineSettings"
 		]);
 
 		// Uncomment if you are using Slate UI

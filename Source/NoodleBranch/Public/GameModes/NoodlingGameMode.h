@@ -8,6 +8,19 @@
 
 #define UE_API NOODLEBRANCH_API
 
+enum class ECommonUserOnlineContext : uint8;
+enum class ECommonUserPrivilege : uint8;
+enum class ECommonSessionOnlineMode : uint8;
+class UCommonUserInfo;
+class UNoodlingExperienceDefinition;
+class UNoodlingPawnData;
+/**
+ * Post login event, triggered when a player or bot joins the game as well as after seamless and non-seamless travel
+ *
+ * This is called after the player has finished initialization
+ */
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnNoodlingGameModePlayerInitialized, AGameModeBase* /*GameMode*/, AController* /*NewPlayer*/);
+
 /**
  * Project Base GameMode class.
  */
@@ -31,9 +44,37 @@ public:
 	UE_API virtual bool PlayerCanRestart_Implementation(APlayerController* Player) override;
 	UE_API virtual void InitGameState() override;
 	UE_API virtual bool UpdatePlayerStartSpot(AController* Player, const FString& Portal, FString& OutErrorMessage) override;
-	UE_API virtual void GenericPlayerInitialization(AController* C) override;
+	UE_API virtual void GenericPlayerInitialization(AController* NewPlayer) override;
 	UE_API virtual void FailedToRestartPlayer(AController* NewPlayer) override;
 	//~End of AGameModeBase Interface Overrides
+
+	UFUNCTION(BlueprintCallable, Category="Noodling|Pawn")
+	UE_API const UNoodlingPawnData* GetPawnDataForController(const AController* InController) const;
+
+	// Restart (respawn) the specified player or bot next frame
+	// - If bForceReset is true, the controller will be reset this frame (abandoning the currently possessed pawn, if any)
+	UFUNCTION(BlueprintCallable)
+	UE_API void RequestPlayerRestartNextFrame(AController* Controller, bool bForceReset = false);
+
+	// Agnostic version of PlayerCanRestart that can be used for both player bots and players
+	UE_API virtual bool ControllerCanRestart(AController* Controller);
+
+	FOnNoodlingGameModePlayerInitialized OnGameModePlayerInitialized;
+
+protected:
+
+	UE_API void OnExperienceLoaded(const UNoodlingExperienceDefinition* CurrentExperience);
+	UE_API bool IsExperienceLoaded() const;
+
+	UE_API void OnMatchAssignmentGiven(const FPrimaryAssetId& ExperienceId, const FString& ExperienceSourceId) const;
+
+	UE_API void HandleMatchAssignmentIfNotExpectingOne();
+
+	UE_API bool TryDedicatedServerLogin();
+	UE_API void	HostDedicatedServerMatch(ECommonSessionOnlineMode OnlineMode) const;
+
+	UFUNCTION()
+	UE_API void OnUserInitializedForDedicatedServer(const UCommonUserInfo* UserInfo, bool bSuccess, FText Error, ECommonUserPrivilege RequestedPrivilege, ECommonUserOnlineContext OnlineContext);
 };
 
 #undef UE_API

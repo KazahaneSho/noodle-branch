@@ -7,3 +7,7 @@ ANoodlingPlayerState::ANoodlingPlayerState(const FObjectInitializer& ObjectIniti
 	: Super(ObjectInitializer)
 {
 }
+
+void ANoodlingPlayerState::OnRep_PawnData()
+{
+}
