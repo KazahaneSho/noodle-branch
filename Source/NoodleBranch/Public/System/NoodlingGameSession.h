@@ -12,6 +12,14 @@ class NOODLEBRANCH_API ANoodlingGameSession : public AGameSession
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
+	
 	explicit ANoodlingGameSession(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
+protected:
+
+	/** Override to disable the default behavior */
+	virtual bool ProcessAutoLogin() override;
+
+	virtual void HandleMatchHasStarted() override;
+	virtual void HandleMatchHasEnded() override;
 };

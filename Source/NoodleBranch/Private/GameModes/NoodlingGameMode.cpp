@@ -173,7 +173,7 @@ void ANoodlingGameMode::FailedToRestartPlayer(AController* NewPlayer)
 	Super::FailedToRestartPlayer(NewPlayer);
 
 	// Try again, but check if there's actually a pawn class before we try forever
-	if (UClass* PawnClass = GetDefaultPawnClassForController(NewPlayer))
+	if (GetDefaultPawnClassForController(NewPlayer))
 	{
 		if (APlayerController* NewPC = Cast<APlayerController>(NewPlayer))
 		{
@@ -197,7 +197,7 @@ void ANoodlingGameMode::FailedToRestartPlayer(AController* NewPlayer)
 	{
 		UE_LOG(NoodleBranch_Log,
 			Verbose,
-			TEXT("FailedToRestartPlayer(%s) but there's no pawn class so giving up."), *GetPathNameSafe(NewPlayer));
+			TEXT("FailedToRestartPlayer: [%s] but there's no pawn class so giving up."), *GetPathNameSafe(NewPlayer));
 	}
 }
 
@@ -527,7 +527,7 @@ void ANoodlingGameMode::OnUserInitializedForDedicatedServer(const UCommonUserInf
 		{
 			UE_LOG(NoodleBranch_LogExperience,
 				Log,
-				TEXT("Dedicated server user login succeeded for id %s, starting online server"), *UserInfo->GetNetId().ToString());
+				TEXT("Dedicated server user login succeeded for id %s, starting online server"), *UserInfo->GetNetId().ToString()/*This ToString() requires CoreOnline Module Public Dependency*/);
 		}
 		else
 		{

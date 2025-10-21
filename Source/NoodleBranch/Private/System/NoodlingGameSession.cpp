@@ -7,3 +7,21 @@ ANoodlingGameSession::ANoodlingGameSession(const FObjectInitializer& ObjectIniti
 	: Super(ObjectInitializer)
 {
 }
+
+bool ANoodlingGameSession::ProcessAutoLogin()
+{
+	// This is actually handled in NoodlingGameMode::TryDedicatedServerLogin
+	return true;
+}
+
+void ANoodlingGameSession::HandleMatchHasStarted()
+{
+	// No customization yet
+	Super::HandleMatchHasStarted();
+}
+
+void ANoodlingGameSession::HandleMatchHasEnded()
+{
+	// No customization yet
+	Super::HandleMatchHasEnded();
+}

@@ -9,24 +9,28 @@ public class NoodleBranch : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange([
+			"AIModule",
+			"CommonLoadingScreen",
 			"Core", 
 			"CoreOnline",
 			"CoreUObject", 
 			"Engine", 
 			"InputCore", 
-			"GameFeatures", 
-			"AIModule",
+			"GameFeatures",
+			"GameplayAbilities",
+			"GameplayTags",
+			"GameplayTasks",
 			"ModularGameplay", 
-			"ModularGameplayActors",
-			"CommonLoadingScreen"
+			"ModularGameplayActors"
 		]);
 
 		PrivateDependencyModuleNames.AddRange([
 			"CommonGame",
 			"CommonUser",
 			"DeveloperSettings",
-			"GameSettings",
-			"EngineSettings"
+			"EngineSettings",
+			"GameplayMessageRuntime",
+			"GameSettings"
 		]);
 
 		// Uncomment if you are using Slate UI
