@@ -8,30 +8,34 @@ public class NoodleBranch : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange([
+		PublicDependencyModuleNames.AddRange(new string[]
+		{
 			"AIModule",
 			"CommonLoadingScreen",
-			"Core", 
+			"Core",
 			"CoreOnline",
-			"CoreUObject", 
-			"Engine", 
-			"InputCore", 
+			"CoreUObject",
+			"Engine",
 			"GameFeatures",
 			"GameplayAbilities",
 			"GameplayTags",
 			"GameplayTasks",
-			"ModularGameplay", 
+			"ModularGameplay",
 			"ModularGameplayActors"
-		]);
+		});
 
-		PrivateDependencyModuleNames.AddRange([
+		PrivateDependencyModuleNames.AddRange(new string[]
+		{
 			"CommonGame",
+			"CommonInput",
 			"CommonUser",
 			"DeveloperSettings",
 			"EngineSettings",
 			"GameplayMessageRuntime",
-			"GameSettings"
-		]);
+			"GameSettings",
+			"InputCore",
+			"Json"
+		});
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
@@ -40,5 +44,22 @@ public class NoodleBranch : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+		
+		// Basic setup for External RPC Framework.
+		// Functionality within framework will be stripped in shipping to remove vulnerabilities.
+		PrivateDependencyModuleNames.Add("ExternalRpcRegistry");
+		if (Target.Configuration == UnrealTargetConfiguration.Shipping)
+		{
+			PublicDefinitions.Add("WITH_RPC_REGISTRY=0");
+			PublicDefinitions.Add("WITH_HTTPSERVER_LISTENERS=0");
+		}
+		else
+		{
+			PrivateDependencyModuleNames.Add("HTTPServer");
+			PublicDefinitions.Add("WITH_RPC_REGISTRY=1");
+			PublicDefinitions.Add("WITH_HTTPSERVER_LISTENERS=1");
+		}
+		// Generate compile errors if using DrawDebug functions in test/shipping builds.
+		PublicDefinitions.Add("SHIPPING_DRAW_DEBUG_ERROR=1");
 	}
 }

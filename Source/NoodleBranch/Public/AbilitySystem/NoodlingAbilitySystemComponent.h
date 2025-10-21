@@ -10,6 +10,7 @@
 
 /*
  * Requires "GameplayAbilities", "GameplayTags", and "GameplayTasks" to be in the PublicDependencyModuleNames in Build.cs.
+ * Also Requires Enabling in Editor first Edit > Plugins and check Gameplay Abilities.
  */
 
 UCLASS(MinimalAPI)
@@ -20,4 +21,10 @@ class UNoodlingAbilitySystemComponent : public UAbilitySystemComponent
 public:
 
 	UE_API explicit UNoodlingAbilitySystemComponent(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
+	UE_API void TryActivateAbilitiesOnSpawn();
+
+	UE_API void ProcessAbilityInput(float DeltaTime, bool bGamePaused);
 };
+
+#undef UE_API

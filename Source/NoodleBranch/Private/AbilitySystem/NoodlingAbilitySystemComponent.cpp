@@ -8,3 +8,11 @@ UNoodlingAbilitySystemComponent::UNoodlingAbilitySystemComponent(const FObjectIn
 	: Super(ObjectInitializer)
 {
 }
+
+void UNoodlingAbilitySystemComponent::TryActivateAbilitiesOnSpawn()
+{
+}
+
+void UNoodlingAbilitySystemComponent::ProcessAbilityInput(float DeltaTime, bool bGamePaused)
+{
+}

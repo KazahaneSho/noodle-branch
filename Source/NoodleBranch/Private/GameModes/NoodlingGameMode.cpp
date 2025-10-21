@@ -384,7 +384,7 @@ void ANoodlingGameMode::HandleMatchAssignmentIfNotExpectingOne()
 	 * If already in the editor Check if WorldSettings in the .umap has a DefaultGameplayExperience set.
 	 * This setting is from ANoodlingWorldSettings
 	 * which is set to WorldSettings class in the DefaultEngine.ini
-	 * (See: [/Script/Engine.Engine] WorldSettingsClassName=/Script/LyraGame.LyraWorldSettings)
+	 * (See: [/Script/Engine.Engine] WorldSettingsClassName=/Script/NoodleBranch.NoodlingWorldSettings)
 	 */
 	if (!ExperienceId.IsValid())
 	{

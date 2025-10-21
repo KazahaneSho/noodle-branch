@@ -8,6 +8,7 @@
 
 #define UE_API NOODLEBRANCH_API
 
+class UNoodlingAbilitySystemComponent;
 class UNoodlingPawnData;
 /**
  * Project Base PlayerState class.
@@ -20,6 +21,9 @@ class ANoodlingPlayerState : public AModularPlayerState
 public:
 	UE_API explicit ANoodlingPlayerState(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
+	UFUNCTION(BlueprintCallable, Category = "NoodleBranch|PlayerState")
+	UNoodlingAbilitySystemComponent* GetNoodlingAbilitySystemComponent() const { return AbilitySystemComponent; }
+	
 	template <class T>
 	const T* GetPawnData() const { return Cast<T>(PawnData); }
 
@@ -32,6 +36,12 @@ protected:
 	// TODO: Add replication
 	UPROPERTY()
 	TObjectPtr<const UNoodlingPawnData> PawnData;
+
+private:
+
+	// The ability system component sub-object used by player characters.
+	UPROPERTY(VisibleAnywhere, Category = "NoodleBranch|PlayerState")
+	TObjectPtr<UNoodlingAbilitySystemComponent> AbilitySystemComponent;
 };
 
 #undef UE_API
