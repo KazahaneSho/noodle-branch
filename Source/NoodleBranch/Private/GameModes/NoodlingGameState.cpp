@@ -39,7 +39,8 @@ void ANoodlingGameState::PreInitializeComponents()
 void ANoodlingGameState::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-
+	
+	// Sets the Ability System Component up to be used for Game Wide abilities.
 	check(AbilitySystemComponent);
 	AbilitySystemComponent->InitAbilityActorInfo(/*Owner=*/ this, /*Avatar=*/ this);
 }
@@ -135,6 +136,8 @@ void ANoodlingGameState::MulticastReliableMessageToClients_Implementation(const 
 	}
 }
 
+
+// An example use case: Messaging Clients about game phases such as Phase_WarmUp
 void ANoodlingGameState::MulticastMessageToClients_Implementation(const FNoodlingVerbMessage Message)
 {
 	MulticastMessageToClients_Implementation(Message);

@@ -34,7 +34,8 @@ public class NoodleBranch : ModuleRules
 			"GameplayMessageRuntime",
 			"GameSettings",
 			"InputCore",
-			"Json"
+			"Json",
+			"NetCore"
 		});
 
 		// Uncomment if you are using Slate UI

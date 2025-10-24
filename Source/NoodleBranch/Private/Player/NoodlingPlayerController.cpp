@@ -169,7 +169,7 @@ void ANoodlingPlayerController::ReceivedPlayer()
 	Super::ReceivedPlayer();
 }
 
-void ANoodlingPlayerController::PlayerTick(float DeltaTime)
+void ANoodlingPlayerController::PlayerTick(const float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 }
@@ -242,10 +242,10 @@ void ANoodlingPlayerController::UpdateHiddenComponents(const FVector& ViewLocati
 
 						for (USceneComponent* AttachedChild : Comp->GetAttachChildren())
 						{
-							static FName NAME_NoParentAutoHide(TEXT("NoParentAutoHide"));
-							if (UPrimitiveComponent* AttachChildPC = Cast<UPrimitiveComponent>(AttachedChild);
+							static FName Name_NoParentAutoHide(TEXT("NoParentAutoHide"));
+							if (const UPrimitiveComponent* AttachChildPC = Cast<UPrimitiveComponent>(AttachedChild);
 								AttachChildPC && AttachChildPC->IsRegistered() &&
-								!AttachChildPC->ComponentTags.Contains(NAME_NoParentAutoHide))
+								!AttachChildPC->ComponentTags.Contains(Name_NoParentAutoHide))
 							{
 								OutHiddenComponents.Add(AttachChildPC->GetPrimitiveSceneId());
 							}
@@ -254,8 +254,8 @@ void ANoodlingPlayerController::UpdateHiddenComponents(const FVector& ViewLocati
 				}
 			};
 
-			//TODO Solve with an interface.  Gather hidden components or something.
-			//TODO Hiding isn't awesome, sometimes you want the effect of a fade out over a proximity, needs to bubble up to designers.
+			// TODO: Solve with an interface.  Gather hidden components or something.
+			// TODO: Hiding isn't awesome, sometimes you want the effect of a fade out over a proximity, needs to bubble up to designers.
 
 			// hide pawn's components
 			TInlineComponentArray<UPrimitiveComponent*> PawnComponents;
@@ -367,6 +367,8 @@ bool ANoodlingPlayerController::ShouldRecordClientReplay()
 		NM_DedicatedServer != GetNetMode() &&
 		IsLocalPlayerController())
 	{
+		// DefaultMap here is meant to represent the FrontEndMap set under
+		// [Script/EngineSettings.GameMapSettings] GameDefaultMap= in DefaultEngine.ini
 		const FString DefaultMap = UGameMapsSettings::GetGameDefaultMap();
 		FString CurrentMap = World->URL.Map;
 
@@ -526,6 +528,7 @@ bool ANoodlingPlayerController::ServerCheat_Validate(const FString& Msg)
 
 //////////////////////////////////////////////////////////////////////
 // ANoodlingReplayPlayerController
+//////////////////////////////////////////////////////////////////////
 
 void ANoodlingReplayPlayerController::Tick(const float DeltaSeconds)
 {

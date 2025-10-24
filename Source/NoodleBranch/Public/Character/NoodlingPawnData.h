@@ -8,6 +8,7 @@
 
 #define UE_API NOODLEBRANCH_API
 
+class UNoodlingAbilitySet;
 /**
  * Non-mutable data asset that contains properties defining a pawn.
  */
@@ -31,6 +32,10 @@ public:
 	// This should usually be derived from ANoodlingPawn or ANoodlingCharacter
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noodling|Pawn")
 	TSubclassOf<class ANoodlingPawn> PawnClass;
+
+	// Ability sets to grant to this pawn's ability system.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noodling|Abilities")
+	TArray<TObjectPtr<UNoodlingAbilitySet>> AbilitySets;
 	
 };
 
