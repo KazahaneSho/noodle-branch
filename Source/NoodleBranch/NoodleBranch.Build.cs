@@ -21,7 +21,8 @@ public class NoodleBranch : ModuleRules
 			"GameplayTags",
 			"GameplayTasks",
 			"ModularGameplay",
-			"ModularGameplayActors"
+			"ModularGameplayActors",
+			"SignificanceManager"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]

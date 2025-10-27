@@ -11,7 +11,6 @@
 #include "GameModes/NoodlingWorldSettings.h"
 #include "Kismet/GameplayStatics.h"
 #include "NoodleBranch/NoodlingLogChannels.h"
-#include "Player/NoodlingPawn.h"
 #include "Player/NoodlingPlayerBotController.h"
 #include "Player/NoodlingPlayerController.h"
 #include "Player/NoodlingPlayerSpawningManagerComponent.h"
@@ -22,6 +21,7 @@
 #include "CommonUserSubsystem.h"
 #include "CommonSessionSubsystem.h"
 #include "GameMapsSettings.h"
+#include "Character/NoodlingPawnBase.h"
 #include "GameModes/NoodlingUserFacingExperienceDefinition.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(NoodlingGameMode)
@@ -34,7 +34,7 @@ ANoodlingGameMode::ANoodlingGameMode(const FObjectInitializer& ObjectInitializer
 	PlayerControllerClass = ANoodlingPlayerController::StaticClass();
 	ReplaySpectatorPlayerControllerClass = ANoodlingReplayPlayerController::StaticClass();
 	PlayerStateClass = ANoodlingPlayerState::StaticClass();
-	DefaultPawnClass = ANoodlingPawn::StaticClass();
+	DefaultPawnClass = ANoodlingPawnBase::StaticClass();
 	HUDClass = ANoodlingHUD::StaticClass();
 	
 }

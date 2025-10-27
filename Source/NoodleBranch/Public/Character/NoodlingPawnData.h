@@ -31,7 +31,7 @@ public:
 	// Class to instantiate for this pawn.
 	// This should usually be derived from ANoodlingPawn or ANoodlingCharacter
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noodling|Pawn")
-	TSubclassOf<class ANoodlingPawn> PawnClass;
+	TSubclassOf<class ANoodlingPawnBase> PawnClass;
 
 	// Ability sets to grant to this pawn's ability system.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noodling|Abilities")
