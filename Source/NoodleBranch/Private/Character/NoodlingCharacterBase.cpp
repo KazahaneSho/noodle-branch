@@ -84,34 +84,30 @@ void ANoodlingCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// TODO: Casting to NoodlingSignificanceManager fails, why?
-
-	// const UWorld* World = GetWorld();
-	//
-	// if (/*Register with Significance manager?*/ !IsNetMode(NM_DedicatedServer))
-	// {
-	// 	if (UNoodlingSignificanceManager* SignificanceManager = USignificanceManager::Get<UNoodlingSignificanceManager>(World))
-	// 	{
-	// 		//@TODO: SignificanceManager->RegisterObject(this, (EFortSignificanceType)SignificanceType);
-	// 	}
-	// }
+	const UWorld* World = GetWorld();
+	
+	if (/*Register with Significance manager?*/ !IsNetMode(NM_DedicatedServer))
+	{
+		if (UNoodlingSignificanceManager* SignificanceManager = USignificanceManager::Get<UNoodlingSignificanceManager>(World))
+		{
+			//@TODO: SignificanceManager->RegisterObject(this, (EFortSignificanceType)SignificanceType);
+		}
+	}
 }
 
 void ANoodlingCharacterBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 
-	// TODO: Casting to NoodlingSignificanceManager fails, why?
-
-	// const UWorld* World = GetWorld();
-	//
-	// if (/*Registered with Significance manager?*/ !IsNetMode(NM_DedicatedServer))
-	// {
-	// 	if (UNoodlingSignificanceManager* SignificanceManager = USignificanceManager::Get<UNoodlingSignificanceManager>(World))
-	// 	{
-	// 		SignificanceManager->UnregisterObject(this);
-	// 	}
-	// }
+	const UWorld* World = GetWorld();
+	
+	if (/*Registered with Significance manager?*/ !IsNetMode(NM_DedicatedServer))
+	{
+		if (UNoodlingSignificanceManager* SignificanceManager = USignificanceManager::Get<UNoodlingSignificanceManager>(World))
+		{
+			SignificanceManager->UnregisterObject(this);
+		}
+	}
 }
 
 void ANoodlingCharacterBase::Reset()

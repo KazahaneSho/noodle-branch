@@ -5,6 +5,12 @@
 #include "SignificanceManager.h"
 #include "NoodlingSignificanceManager.generated.h"
 
+/*
+ * This Requires:
+ * [/Script/SignificanceManager.SignificanceManager]
+ * SignificanceManagerClassName=/Script/NoodleBranch.NoodlingSignificanceManager
+ * To be set in DefaultEngine.ini in order to be used.
+ */
 UCLASS()
 class NOODLEBRANCH_API UNoodlingSignificanceManager : public USignificanceManager
 {
