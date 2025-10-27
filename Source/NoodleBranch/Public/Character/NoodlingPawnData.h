@@ -2,12 +2,14 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "NoodlingPawnData.generated.h"
 
 #define UE_API NOODLEBRANCH_API
 
+class UNoodlingCameraMode;
+class UNoodlingInputConfig;
+class UNoodlingAbilityTagRelationshipMapping;
 class UNoodlingAbilitySet;
 /**
  * Non-mutable data asset that contains properties defining a pawn.
@@ -30,12 +32,24 @@ public:
 
 	// Class to instantiate for this pawn.
 	// This should usually be derived from ANoodlingPawn or ANoodlingCharacter
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noodling|Pawn")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NoodleBranch|Pawn")
 	TSubclassOf<class ANoodlingPawnBase> PawnClass;
 
 	// Ability sets to grant to this pawn's ability system.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Noodling|Abilities")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NoodleBranch|Abilities")
 	TArray<TObjectPtr<UNoodlingAbilitySet>> AbilitySets;
+
+	// What mapping of ability tags to use for actions taking by this pawn
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NoodleBranch|Abilities")
+	TObjectPtr<UNoodlingAbilityTagRelationshipMapping> TagRelationshipMapping;
+
+	// Input configuration used by player controlled pawns to create input mappings and bind input actions.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NoodleBranch|Input")
+	TObjectPtr<UNoodlingInputConfig> InputConfig;
+
+	// Default camera mode used by player controlled pawns.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NoodleBranch|Camera")
+	TSubclassOf<UNoodlingCameraMode> DefaultCameraMode;
 	
 };
 
