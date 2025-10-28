@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
 #include "NoodlingAbilitySystemComponent.generated.h"
 
@@ -12,6 +11,8 @@
  * Requires "GameplayAbilities", "GameplayTags", and "GameplayTasks" to be in the PublicDependencyModuleNames in Build.cs.
  * Also Requires Enabling in Editor first Edit > Plugins and check Gameplay Abilities.
  */
+
+class UNoodlingAbilityTagRelationshipMapping;
 
 UCLASS(MinimalAPI)
 class UNoodlingAbilitySystemComponent : public UAbilitySystemComponent
@@ -25,6 +26,10 @@ public:
 	UE_API void TryActivateAbilitiesOnSpawn();
 
 	UE_API void ProcessAbilityInput(float DeltaTime, bool bGamePaused);
+	UE_API void ClearAbilityInput();
+	
+	/** Sets the current tag relationship mapping, if null it will clear it out */
+	UE_API void SetTagRelationshipMapping(UNoodlingAbilityTagRelationshipMapping* NewMapping);
 };
 
 #undef UE_API

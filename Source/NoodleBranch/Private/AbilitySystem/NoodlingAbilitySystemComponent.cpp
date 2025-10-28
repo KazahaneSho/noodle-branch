@@ -16,3 +16,11 @@ void UNoodlingAbilitySystemComponent::TryActivateAbilitiesOnSpawn()
 void UNoodlingAbilitySystemComponent::ProcessAbilityInput(float DeltaTime, bool bGamePaused)
 {
 }
+
+void UNoodlingAbilitySystemComponent::ClearAbilityInput()
+{
+}
+
+void UNoodlingAbilitySystemComponent::SetTagRelationshipMapping(UNoodlingAbilityTagRelationshipMapping* NewMapping)
+{
+}

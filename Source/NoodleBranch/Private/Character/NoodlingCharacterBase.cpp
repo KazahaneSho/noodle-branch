@@ -90,7 +90,8 @@ void ANoodlingCharacterBase::BeginPlay()
 	{
 		if (UNoodlingSignificanceManager* SignificanceManager = USignificanceManager::Get<UNoodlingSignificanceManager>(World))
 		{
-			//@TODO: SignificanceManager->RegisterObject(this, (EFortSignificanceType)SignificanceType);
+			//This is a Stub
+			SignificanceManager->RegisterObject(this, FName("Dummy"), nullptr);
 		}
 	}
 }
@@ -509,7 +510,7 @@ void ANoodlingCharacterBase::SetMovementModeTag(const EMovementMode MovementMode
 {
 	if (UNoodlingAbilitySystemComponent* NoodlingAbilitySystemComponent = GetNoodlingAbilitySystemComponent())
 	{
-		const FGameplayTag* MovementModeTag = nullptr;
+		const FGameplayTag* MovementModeTag;
 		if (MovementMode == MOVE_Custom)
 		{
 			MovementModeTag = NoodlingGameplayTags::CustomMovementModeTagMap.Find(CustomMovementMode);
