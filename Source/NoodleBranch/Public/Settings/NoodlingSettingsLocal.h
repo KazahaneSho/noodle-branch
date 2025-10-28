@@ -18,6 +18,8 @@ public:
 
 	static UNoodlingSettingsLocal* Get();
 
+	void OnExperienceLoaded();
+
 	// Replay Settings
 public:
 

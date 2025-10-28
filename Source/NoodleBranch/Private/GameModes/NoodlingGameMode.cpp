@@ -416,7 +416,7 @@ void ANoodlingGameMode::HandleMatchAssignmentIfNotExpectingOne()
 		}
 
 		//@TODO: Pull this from a config setting or something
-		ExperienceId = FPrimaryAssetId(FPrimaryAssetType("NoodlingExperienceDefinition"), FName("NoodlingDefaultExperience"));
+		ExperienceId = FPrimaryAssetId(FPrimaryAssetType("NoodlingExperienceDefinition"), FName("B_DefaultExperience"));
 		ExperienceIdSource = TEXT("Default");
 	}
 	OnMatchAssignmentGiven(ExperienceId, ExperienceIdSource);

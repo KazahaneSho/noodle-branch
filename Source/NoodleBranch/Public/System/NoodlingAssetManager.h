@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Engine/AssetManager.h"
 #include "Templates/SubclassOf.h"
 #include "NoodlingAssetManager.generated.h"
@@ -10,6 +9,11 @@
 #define UE_API NOODLEBRANCH_API
 
 class UNoodlingPawnData;
+
+struct FNoodlingBundles
+{
+	static const FName Equipped;
+};
 
 /**
  * UNoodlingAssetManager
@@ -66,3 +70,5 @@ AssetType* UNoodlingAssetManager::GetAsset(const TSoftObjectPtr<AssetType>& Asse
 	}
 	return LoadedAsset;
 }
+
+#undef UE_API

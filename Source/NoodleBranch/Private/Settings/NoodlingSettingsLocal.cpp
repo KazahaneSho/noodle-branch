@@ -7,3 +7,7 @@ UNoodlingSettingsLocal* UNoodlingSettingsLocal::Get()
 {
 	return GEngine ? CastChecked<UNoodlingSettingsLocal>(GEngine->GetGameUserSettings()) : nullptr;
 }
+
+void UNoodlingSettingsLocal::OnExperienceLoaded()
+{
+}

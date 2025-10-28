@@ -5,6 +5,8 @@
 #include "Character/NoodlingPawnData.h"
 #include "NoodleBranch/NoodlingLogChannels.h"
 
+const FName FNoodlingBundles::Equipped("Equipped");
+
 UNoodlingAssetManager::UNoodlingAssetManager()
 {
 	DefaultPawnData = nullptr;
